@@ -1,0 +1,37 @@
+pour telecharger docker-compose avec chatGPT solution:
+	- sudo snap install docker
+	- docker --version
+	- sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+	- sudo chmod +x /usr/local/bin/docker-compose
+	- docker-compose --version
+
+which docker-compose
+/usr/local/bin/docker-compose
+
+pour telecharger aws cli dans EC2:
+	. curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+	. unzip awscliv2.zip
+	. sudo ./aws/install
+
+
+pour telecharger un dossier et sous elements depuis s3 vers local:
+
+	. aws s3 cp s3://your-bucket-name/your-folder/ local-folder --recursive
+
+	. Ex: aws s3 cp s3://test-s3-650251706104/images . --recursive
+
+
+pour compter le nombre des fichiers dans chaque dossier dans le dossier images dans s3:
+
+	. aws s3 ls s3://test-s3-650251706104/images/ --recursive | awk -F"/" '{print $2}' | sort | uniq -c
+
+
+pour telecharger un dossier depuis EC2 vers local:
+
+	. scp -i /path/to/your-key.pem -r ec2-user@your-ec2-public-ip:/path/to/remote/directory /path/to/local/destination
+	. Ex: scp -i "key_for_connect.pem" -r ubuntu@ec2-100-28-132-250.compute-1.amazonaws.com:/home/ubuntu/Mham_Project_Scraping_Parts ./Mham_Project_Scraping_Parts
+
+pour copie un dossier depuis Local vers EC2:
+
+	. scp -r -i "key_pair_connect_Mham_Scraping.pem" ./Mham_Project_Scraping_Parts ubuntu@ec2-3-254-188-59.eu-west-1.compute.amazonaws.com:/home/ubuntu
+
